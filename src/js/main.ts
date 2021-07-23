@@ -36,7 +36,7 @@ function MultiForm(form: Element) {
     //progress bar
     const progress = form.querySelectorAll('.progress__item');
     // applicant name 
-    const applicantName = form.querySelector('.applicant__name');
+    const applicantName = form.querySelectorAll('.applicant__name');
     // prev button
     const prevButton = document.querySelector('.prev__arrow');
 
@@ -61,7 +61,7 @@ function MultiForm(form: Element) {
     function addEvents() {
         //contButton.addEventListener('click', validateForm);
         // validate function to be called by all fieldsets except last one 
-        for (let i = 0; i < fieldCount; i++) {
+        for (let i = 0; i < fieldCount - 1; i++) {
             // continue buttons
             fieldSets[i].querySelector('button').addEventListener('click', validateForm);
         }
@@ -83,6 +83,8 @@ function MultiForm(form: Element) {
         }))
         // button 
         prevButton.addEventListener('click', prevQuestion);
+        // form submission
+        completeForm.addEventListener('submit', formSubmit);
     }
 
     function validateForm() {
@@ -90,7 +92,9 @@ function MultiForm(form: Element) {
         let valid = true;
         if (currentField == 0) {
             let tempp = fieldSets[currentField].querySelector('input[name="firstName"]');
-            applicantName.innerHTML = tempp.value.trim();
+            applicantName.forEach(sing => {
+                sing.innerHTML = tempp.value.trim();
+            })
         }
         let inputs = fieldSets[currentField].querySelectorAll('input');
         // for (let i = 0; i < inputs.length; i++) {
@@ -139,12 +143,6 @@ function MultiForm(form: Element) {
         if (n) {
             progress[currentField].className += "finished";
             // check if the current tab matches the length of fieldset
-            if (currentField >= fieldCount) {
-                // completeForm.submit();
-                // exit the function
-                // return false;
-                console.log("Hello");
-            }
             fieldSets[currentField].classList.remove("current");
             ++currentField;
         } else {
@@ -175,7 +173,7 @@ function MultiForm(form: Element) {
                 }
             }
 
-        } 
+        }
         else {
             // validating inputs 
             // a loop to check if input not empty 
@@ -239,6 +237,11 @@ function MultiForm(form: Element) {
         // if (checkFields()) {
         // }
 
+    }
+
+    function formSubmit(event) {
+        console.log("Submitting");
+        event.preventDefault();
     }
 
 

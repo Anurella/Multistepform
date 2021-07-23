@@ -30,7 +30,7 @@ function MultiForm(form) {
     //progress bar
     const progress = form.querySelectorAll('.progress__item');
     // applicant name 
-    const applicantName = form.querySelector('.applicant__name');
+    const applicantName = form.querySelectorAll('.applicant__name');
     // prev button
     const prevButton = document.querySelector('.prev__arrow');
     function init() {
@@ -53,7 +53,7 @@ function MultiForm(form) {
     function addEvents() {
         //contButton.addEventListener('click', validateForm);
         // validate function to be called by all fieldsets except last one 
-        for (let i = 0; i < fieldCount; i++) {
+        for (let i = 0; i < fieldCount - 1; i++) {
             // continue buttons
             fieldSets[i].querySelector('button').addEventListener('click', validateForm);
         }
@@ -75,13 +75,17 @@ function MultiForm(form) {
         }));
         // button 
         prevButton.addEventListener('click', prevQuestion);
+        // form submission
+        completeForm.addEventListener('submit', formSubmit);
     }
     function validateForm() {
         console.log("Validating");
         let valid = true;
         if (currentField == 0) {
             let tempp = fieldSets[currentField].querySelector('input[name="firstName"]');
-            applicantName.innerHTML = tempp.value.trim();
+            applicantName.forEach(sing => {
+                sing.innerHTML = tempp.value.trim();
+            });
         }
         let inputs = fieldSets[currentField].querySelectorAll('input');
         // for (let i = 0; i < inputs.length; i++) {
@@ -130,12 +134,6 @@ function MultiForm(form) {
         if (n) {
             progress[currentField].className += "finished";
             // check if the current tab matches the length of fieldset
-            if (currentField >= fieldCount) {
-                // completeForm.submit();
-                // exit the function
-                // return false;
-                console.log("Hello");
-            }
             fieldSets[currentField].classList.remove("current");
             ++currentField;
         }
@@ -160,7 +158,6 @@ function MultiForm(form) {
                 if (selects[i].value === "") {
                     temp = false;
                 }
-                break;
             }
         }
         else {
@@ -227,6 +224,10 @@ function MultiForm(form) {
         showNext(currentField);
         // if (checkFields()) {
         // }
+    }
+    function formSubmit(event) {
+        console.log("Submitting");
+        event.preventDefault();
     }
     init();
 }

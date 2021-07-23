@@ -159,6 +159,7 @@ button {
 :root {
   --steel: $steel;
   --white: #ffffff;
+  --black: $black;
   --platinum: $platinum;
   --primary: $primary;
   --white: #ffffff;
@@ -230,15 +231,20 @@ header {
 .mb {
   margin-bottom: 20px;
 }
-
-.form__wrapper {
-  padding: 0 20px;
+@media screen and (min-width: 768px) {
+  .mb {
+    margin-bottom: 0;
+  }
 }
 
+.form__wrapper {
+  padding: 0 20px 30px;
+}
 .radio__list {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 .radio__list label {
   width: calc(50% - 20px);
@@ -248,6 +254,12 @@ header {
     margin: 0 auto;
   }
 }
+@media screen and (min-width: 768px) {
+  .radio__list label {
+    width: calc((100% / 4) - 20px);
+    max-width: 240px;
+  }
+}
 .radio__list label > div {
   border: 1px solid #D2D7DB;
   padding: 20px 0;
@@ -255,10 +267,11 @@ header {
 }
 .radio__option {
   color: #54616C;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   text-align: center;
   display: block;
   text-transform: uppercase;
+  font-weight: 400;
 }
 .radio__option small {
   display: inherit;
@@ -287,6 +300,73 @@ header {
   transform: scale(0);
   transition: transform, opacity 0.2s ease;
 }
+.radio__title {
+  text-transform: uppercase;
+  font-size: 1.31rem;
+  color: #002E5A;
+  margin-top: 10px;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .radio__title {
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+}
+.radio__des {
+  text-align: center;
+  font-size: 1.15rem;
+  color: #000000;
+  margin: 10px auto 30px;
+  max-width: calc(100% - 60px);
+}
+.radio__dets {
+  border-top: 2px solid #B50156;
+  width: 100%;
+  padding: 15px 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.radio__dets span:first-child {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #54616C;
+}
+
+.diff {
+  font-size: 1.7rem;
+  color: #002E5A;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .funds__options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(-webkit-min-content, 1fr));
+    grid-template-columns: repeat(3, minmax(min-content, 1fr));
+    gap: 20px;
+    justify-items: center;
+  }
+}
+.funds__options .radio__svg {
+  border: 1px solid #D2D7DB;
+  padding: 20px 0 15px;
+  transition: border 0.2s ease;
+}
+.style--2 {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+}
+.style--2::after {
+  width: 6px;
+  height: 6px;
+  top: 1px;
+  left: 1px;
+}
 
 fieldset {
   border: none;
@@ -295,6 +375,20 @@ fieldset {
   height: 0;
   padding: 0;
   display: none;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  fieldset .flex {
+    display: flex;
+    justify-content: center;
+  }
+  fieldset .flex label {
+    width: 100%;
+    max-width: 350px;
+  }
+  fieldset .flex label:not(:first-child) {
+    margin-left: 20px;
+  }
 }
 fieldset.current {
   visibility: visible;
@@ -307,6 +401,13 @@ fieldset h2 {
   text-align: center;
   color: #002E5A;
   margin: 30px auto;
+  font-weight: 700;
+}
+@media screen and (min-width: 768px) {
+  fieldset h2 {
+    max-width: 727px;
+    font-size: 3.3rem;
+  }
 }
 fieldset [data-field] {
   display: block;
@@ -349,21 +450,21 @@ fieldset [data-input=input]::-moz-placeholder {
   font-weight: 700;
   text-transform: uppercase;
   color: #54616C;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.055em;
 }
 fieldset [data-input=input]:-ms-input-placeholder {
   font-weight: 700;
   text-transform: uppercase;
   color: #54616C;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.055em;
 }
 fieldset [data-input=input]::placeholder {
   font-weight: 700;
   text-transform: uppercase;
   color: #54616C;
-  font-size: 14px;
+  font-size: 16px;
   letter-spacing: 0.055em;
 }
 fieldset button {
@@ -374,6 +475,8 @@ fieldset button {
   font-weight: 700;
   padding: 22px 0;
   transition: background 0.2s ease-in-out;
+  font-size: 1.6rem;
+  max-width: 400px;
 }
 fieldset .error {
   background: #f8abab;
@@ -435,9 +538,15 @@ fieldset select:focus + .focus {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 .select__list label {
   width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .select__list label {
+    max-width: 350px;
+  }
 }
 
 [data-input=radio]:checked ~ div {
@@ -478,14 +587,20 @@ fieldset select:focus + .focus {
     transform: translate3d(6px, 0, 0);
   }
 }
-.employment__item {
+.radio__svg {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100%;
 }
-.employment__item svg {
-  width: 30px;
-  height: auto;
+@media screen and (min-width: 768px) {
+  .radio__svg {
+    justify-content: space-between;
+  }
+}
+.radio__svg svg {
+  height: 30px;
+  width: auto;
   margin-bottom: 10px;
 }
 
@@ -514,6 +629,11 @@ fieldset select:focus + .focus {
 .prev__arrow.visible {
   visibility: visible;
   opacity: 1;
+}
+
+.applicant__name {
+  font-style: italic;
+  color: #8694a1;
 }
 
 .progress {

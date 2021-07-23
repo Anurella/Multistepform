@@ -164,11 +164,13 @@ $primary: #002E5A;
 $white: #ffffff;
 $spacing-30: 30px;
 $active: #B50156;
+$black: #000000;
 
 
 :root {
     --steel: $steel;
     --white: #ffffff;
+    --black: $black;
     --platinum: $platinum;
     --primary: $primary;
     --white: #ffffff;
@@ -253,10 +255,18 @@ header {
 
 .mb {
     margin-bottom: 20px;
+
+    @media screen and (min-width:768px) {
+        margin-bottom: 0;
+    }
 }
 
-.form__wrapper {
-    padding: 0 20px;
+.form {
+    &__wrapper {
+        padding: 0 20px 30px;
+
+        @media screen and (min-width:768px) {}
+    }
 }
 
 
@@ -267,6 +277,7 @@ header {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
+        justify-content: center;
 
         label {
             width: calc(50% - 20px);
@@ -275,6 +286,11 @@ header {
                 &:last-child {
                     margin: 0 auto;
                 }
+            }
+
+            @media screen and (min-width:768px) {
+                width: calc((100% / 4) - 20px);
+                max-width: 240px;
             }
 
             >div {
@@ -288,10 +304,11 @@ header {
     &__option {
 
         color: $steel;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         text-align: center;
         display: block;
         text-transform: uppercase;
+        font-weight: 400;
 
         small {
             display: inherit;
@@ -326,6 +343,85 @@ header {
         }
     }
 
+    &__title {
+        text-transform: uppercase;
+        font-size: 1.31rem;
+        color: $primary;
+        margin-top: 10px;
+        text-align: center;
+
+        @media screen and (min-width: 768px) {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+    }
+
+    &__des {
+        text-align: center;
+        font-size: 1.15rem;
+
+        color: $black;
+        margin: 10px auto 30px;
+        max-width: calc(100% - 60px);
+    }
+
+    &__dets {
+        border-top: 2px solid $active;
+        width: 100%;
+        padding: 15px 30px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span:first-child {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: $steel;
+        }
+    }
+}
+
+.diff {
+    font-size: 1.7rem;
+    color: $primary;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.funds {
+    &__options {
+
+        @media screen and (min-width:768px) {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(min-content, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        .radio__svg {
+            border: 1px solid $platinum;
+            padding: 20px 0 15px;
+            transition: border 0.2s ease;
+        }
+
+        label:not(:last-child) {
+            // margin-bottom: 20px;
+        }
+    }
+}
+
+.style--2 {
+    width: 10px;
+    height: 10px;
+    margin: 0;
+
+    &::after {
+        width: 6px;
+        height: 6px;
+        top: 1px;
+        left: 1px;
+    }
 }
 
 
@@ -336,6 +432,26 @@ fieldset {
     height: 0;
     padding: 0;
     display: none;
+    text-align: center;
+
+
+    @media screen and (min-width:768px) {
+        .flex {
+            display: flex;
+            justify-content: center;
+
+            label {
+                width: 100%;
+                max-width: 350px;
+
+                &:not(:first-child) {
+                    margin-left: 20px;
+                }
+            }
+
+
+        }
+    }
 
     &.current {
         visibility: visible;
@@ -349,6 +465,12 @@ fieldset {
         text-align: center;
         color: $primary;
         margin: $spacing-30 auto;
+        font-weight: 700;
+
+        @media screen and (min-width:768px) {
+            max-width: 727px;
+            font-size: 3.3rem;
+        }
     }
 
     [data-field] {
@@ -397,7 +519,7 @@ fieldset {
         font-weight: 700;
         text-transform: uppercase;
         color: $steel;
-        font-size: 14px;
+        font-size: 16px;
         letter-spacing: 0.055em;
     }
 
@@ -409,6 +531,8 @@ fieldset {
         font-weight: 700;
         padding: 22px 0;
         transition: background 0.2s ease-in-out;
+        font-size: 1.6rem;
+        max-width: 400px;
     }
 
     .error {
@@ -485,13 +609,17 @@ fieldset {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
+        justify-content: center;
 
         label {
             width: 100%;
+
+            @media screen and (min-width: 768px) {
+                max-width: 350px;
+            }
         }
     }
 }
-
 
 
 [data-input="radio"]:checked~div {
@@ -529,14 +657,19 @@ fieldset {
 }
 
 
-.employment__item {
+.radio__svg {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
+
+    @media screen and (min-width:768px) {
+        justify-content: space-between;
+    }
 
     svg {
-        width: 30px;
-        height: auto;
+        height: 30px;
+        width: auto;
         margin-bottom: 10px;
     }
 }
@@ -566,6 +699,13 @@ fieldset {
     &.visible {
         visibility: visible;
         opacity: 1;
+    }
+}
+
+.applicant {
+    &__name {
+        font-style: italic;
+        color: lighten($color: $steel, $amount: 20)
     }
 }
 
