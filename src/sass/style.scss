@@ -198,23 +198,36 @@ header {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding-left: 20px;
+    padding-right: 20px;
+
     // height: 60px;
+    @media screen and (min-width:768px) {
+        padding-right: 40px;
+    }
 }
 
 .site {
     &__logo {
         img {
             height: 20px;
-            width: 100%
+            width: 100%;
+            object-fit: contain;
+
+            @media screen and (min-width:768px) {
+                height: 30px;
+            }
         }
     }
 
     &__actions {
-        button {
+        a {
             display: inline-flex;
             align-items: center;
             padding: 22px 20px;
+
+            @media screen and (min-width: 768px) {
+                padding: 25px 40px;
+            }
         }
 
         svg {
@@ -222,11 +235,11 @@ header {
             height: 16px;
         }
 
-        button:first-child {
+        a:first-child {
             padding-right: 6px;
         }
 
-        button:last-child {
+        a:last-child {
             padding-left: 6px;
         }
     }
@@ -266,31 +279,38 @@ header {
         padding: 0 20px 30px;
 
         @media screen and (min-width:768px) {}
+
+        &.done {
+            display: none;
+        }
     }
 }
-
-
 
 .radio {
 
     &__list {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
         justify-content: center;
 
         label {
             width: calc(50% - 20px);
 
-            @media screen and (max-width: 600px) {
-                &:last-child {
-                    margin: 0 auto;
+            @media screen and (max-width: 767px) {
+                margin-bottom: 20px;
+
+                &:nth-child(even) {
+                    margin-left: 20px;
                 }
             }
 
             @media screen and (min-width:768px) {
                 width: calc((100% / 4) - 20px);
                 max-width: 240px;
+
+                &:not(:first-child) {
+                    margin-left: 20px;
+                }
             }
 
             >div {
@@ -391,12 +411,13 @@ header {
 
 .funds {
     &__options {
-
         @media screen and (min-width:768px) {
             display: grid;
             grid-template-columns: repeat(3, minmax(min-content, 1fr));
-            gap: 20px;
             justify-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            gap: 20px;
         }
 
         .radio__svg {
@@ -406,7 +427,11 @@ header {
         }
 
         label:not(:last-child) {
-            // margin-bottom: 20px;
+            margin-bottom: 20px;
+
+            @media screen and (min-width:767px) {
+                margin-bottom: 0;
+            }
         }
     }
 }
@@ -622,7 +647,8 @@ fieldset {
 }
 
 
-[data-input="radio"]:checked~div {
+[data-input="radio"]:checked~div,
+[data-input="radio"]:checked~div .radio__style {
     border-color: $active;
 }
 
@@ -684,6 +710,8 @@ fieldset {
     cursor: pointer;
 }
 
+
+
 .controls {
     margin-top: $spacing-30;
     display: flex;
@@ -695,6 +723,8 @@ fieldset {
     height: 50px;
     visibility: hidden;
     opacity: 0;
+    position: absolute;
+    z-index: 1;
 
     &.visible {
         visibility: visible;
@@ -711,7 +741,7 @@ fieldset {
 
 .progress {
     text-align: center;
-    width: calc(100% - 50px);
+    width: 100%;
 
     &__item {
         height: 10px;
@@ -736,6 +766,37 @@ fieldset {
 
         &.finished.active {
             opacity: 0.5;
+        }
+    }
+}
+
+
+.successMessage {
+    display: none;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+
+    &.visible {
+        display: block;
+    }
+
+    div:first-child {
+        margin-top: 4rem;
+        margin-bottom: 2.5rem;
+    }
+
+    div:last-child {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+        color: $primary;
+
+        @media screen and (min-width: 768px) {
+            font-size: 3.35rem;
         }
     }
 }

@@ -240,8 +240,11 @@ function MultiForm(form: Element) {
     }
 
     function formSubmit(event) {
-        console.log("Submitting");
         event.preventDefault();
+        console.log("Submitting");
+        // hide form and show 
+        completeForm.classList.add("done");
+        document.querySelector('.successMessage').classList.add('visible');
     }
 
 

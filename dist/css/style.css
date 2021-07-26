@@ -186,26 +186,43 @@ header {
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding-left: 20px;
+  padding-right: 20px;
+}
+@media screen and (min-width: 768px) {
+  header {
+    padding-right: 40px;
+  }
 }
 
 .site__logo img {
   height: 20px;
   width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
-.site__actions button {
+@media screen and (min-width: 768px) {
+  .site__logo img {
+    height: 30px;
+  }
+}
+.site__actions a {
   display: inline-flex;
   align-items: center;
   padding: 22px 20px;
+}
+@media screen and (min-width: 768px) {
+  .site__actions a {
+    padding: 25px 40px;
+  }
 }
 .site__actions svg {
   width: 16px;
   height: 16px;
 }
-.site__actions button:first-child {
+.site__actions a:first-child {
   padding-right: 6px;
 }
-.site__actions button:last-child {
+.site__actions a:last-child {
   padding-left: 6px;
 }
 
@@ -240,24 +257,33 @@ header {
 .form__wrapper {
   padding: 0 20px 30px;
 }
+.form__wrapper.done {
+  display: none;
+}
+
 .radio__list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
 }
 .radio__list label {
   width: calc(50% - 20px);
 }
-@media screen and (max-width: 600px) {
-  .radio__list label:last-child {
-    margin: 0 auto;
+@media screen and (max-width: 767px) {
+  .radio__list label {
+    margin-bottom: 20px;
+  }
+  .radio__list label:nth-child(even) {
+    margin-left: 20px;
   }
 }
 @media screen and (min-width: 768px) {
   .radio__list label {
     width: calc((100% / 4) - 20px);
     max-width: 240px;
+  }
+  .radio__list label:not(:first-child) {
+    margin-left: 20px;
   }
 }
 .radio__list label > div {
@@ -347,8 +373,10 @@ header {
     display: grid;
     grid-template-columns: repeat(3, minmax(-webkit-min-content, 1fr));
     grid-template-columns: repeat(3, minmax(min-content, 1fr));
-    gap: 20px;
     justify-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 20px;
   }
 }
 .funds__options .radio__svg {
@@ -356,6 +384,15 @@ header {
   padding: 20px 0 15px;
   transition: border 0.2s ease;
 }
+.funds__options label:not(:last-child) {
+  margin-bottom: 20px;
+}
+@media screen and (min-width: 767px) {
+  .funds__options label:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
+
 .style--2 {
   width: 10px;
   height: 10px;
@@ -549,7 +586,8 @@ fieldset select:focus + .focus {
   }
 }
 
-[data-input=radio]:checked ~ div {
+[data-input=radio]:checked ~ div,
+[data-input=radio]:checked ~ div .radio__style {
   border-color: #B50156;
 }
 
@@ -625,6 +663,8 @@ fieldset select:focus + .focus {
   height: 50px;
   visibility: hidden;
   opacity: 0;
+  position: absolute;
+  z-index: 1;
 }
 .prev__arrow.visible {
   visibility: visible;
@@ -638,7 +678,7 @@ fieldset select:focus + .focus {
 
 .progress {
   text-align: center;
-  width: calc(100% - 50px);
+  width: 100%;
 }
 .progress__item {
   height: 10px;
@@ -661,4 +701,31 @@ fieldset select:focus + .focus {
 }
 .progress__item.finished.active {
   opacity: 0.5;
+}
+
+.successMessage {
+  display: none;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.successMessage.visible {
+  display: block;
+}
+.successMessage div:first-child {
+  margin-top: 4rem;
+  margin-bottom: 2.5rem;
+}
+.successMessage div:last-child {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.successMessage h1 {
+  font-size: 2.2rem;
+  color: #002E5A;
+}
+@media screen and (min-width: 768px) {
+  .successMessage h1 {
+    font-size: 3.35rem;
+  }
 }
