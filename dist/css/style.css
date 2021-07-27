@@ -280,7 +280,7 @@ header {
 @media screen and (min-width: 768px) {
   .radio__list label {
     width: calc((100% / 4) - 20px);
-    max-width: 240px;
+    max-width: 200px;
   }
   .radio__list label:not(:first-child) {
     margin-left: 20px;
@@ -291,6 +291,12 @@ header {
   padding: 20px 0;
   transition: border 0.2s ease;
 }
+@media screen and (min-width: 768px) {
+  .radio__list label > div {
+    padding: 30px 0;
+    height: 180px;
+  }
+}
 .radio__option {
   color: #54616C;
   font-size: 1.5rem;
@@ -299,9 +305,14 @@ header {
   text-transform: uppercase;
   font-weight: 400;
 }
+@media screen and (min-width: 768px) {
+  .radio__option {
+    font-size: 1.7rem;
+  }
+}
 .radio__option small {
   display: inherit;
-  margin-top: 5px;
+  margin-top: 10px;
   font-size: 1rem;
   text-transform: capitalize;
 }
@@ -374,7 +385,7 @@ header {
     grid-template-columns: repeat(3, minmax(-webkit-min-content, 1fr));
     grid-template-columns: repeat(3, minmax(min-content, 1fr));
     justify-items: center;
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     gap: 20px;
   }
@@ -394,15 +405,15 @@ header {
 }
 
 .style--2 {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   margin: 0;
 }
 .style--2::after {
-  width: 6px;
-  height: 6px;
-  top: 1px;
-  left: 1px;
+  width: 9px;
+  height: 9px;
+  top: 2px;
+  left: 2px;
 }
 
 fieldset {
@@ -549,6 +560,9 @@ fieldset [data-input=select] {
   text-transform: uppercase;
   color: #54616C;
   letter-spacing: 0.055em;
+}
+fieldset option {
+  padding: 10px;
 }
 fieldset select:focus + .focus {
   position: absolute;
@@ -700,7 +714,8 @@ fieldset select:focus + .focus {
   opacity: 1;
 }
 .progress__item.finished.active {
-  opacity: 0.5;
+  background-color: #d2d7db;
+  border-color: #54616c;
 }
 
 .successMessage {
