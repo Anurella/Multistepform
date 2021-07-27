@@ -229,7 +229,7 @@ function MultiForm(form) {
         event.preventDefault();
         console.log("Submitting");
         // hide form and show 
-        completeForm.classList.add("done");
+        completeForm.parentElement.classList.add("done");
         document.querySelector('.successMessage').classList.add('visible');
     }
     init();
