@@ -39,6 +39,8 @@ function MultiForm(form: Element) {
     const applicantName = form.querySelectorAll('.applicant__name');
     // prev button
     const prevButton = document.querySelector('.prev__arrow');
+    // consent 
+    const approval = form.querySelector('#privacy');
 
     function init() {
         console.log("Initializing Form")
@@ -81,6 +83,13 @@ function MultiForm(form: Element) {
                 checkFilled();
             }, 250);
         }))
+        approval.addEventListener('change', function (e) {
+            clearErrors(e);
+            clearTimeout(filledOut);
+            filledOut = setTimeout(() => {
+                checkFilled();
+            }, 250);
+        })
         // button 
         prevButton.addEventListener('click', prevQuestion);
         // form submission
@@ -90,13 +99,14 @@ function MultiForm(form: Element) {
     function validateForm() {
         console.log("Validating");
         let valid = true;
+        let inputs = fieldSets[currentField].querySelectorAll('input');
         if (currentField == 0) {
-            let tempp = fieldSets[currentField].querySelector('input[name="firstName"]');
+            let tempp: any = fieldSets[currentField].querySelector('input[name="firstName"]');
             applicantName.forEach(sing => {
                 sing.innerHTML = tempp.value.trim();
             })
         }
-        let inputs = fieldSets[currentField].querySelectorAll('input');
+
         // for (let i = 0; i < inputs.length; i++) {
         //     //the checkFields checks for empty state 
         //     // If a field is empty...
@@ -118,6 +128,7 @@ function MultiForm(form: Element) {
         for (let i = 0; i < inputs.length; i++) {
             //the checkFields checks for empty state 
             if (checkFields()) {
+                inputs[i].classList.remove("invalid")
                 break;
             } else {
                 if (inputs[i].classList.contains("invalid")) {
@@ -146,7 +157,7 @@ function MultiForm(form: Element) {
             fieldSets[currentField].classList.remove("current");
             ++currentField;
         } else {
-            console.log("Hello I am this stage");
+            console.log("Hello I have not moved");
         }
         showNext(currentField);
     }
@@ -166,6 +177,7 @@ function MultiForm(form: Element) {
         let inputs = fieldSets[currentField].querySelectorAll('input');
         let selects = fieldSets[currentField].querySelectorAll('select');
 
+
         if (currentField === 4) {
             for (let i = 0; i < selects.length; i++) {
                 if (selects[i].value === "") {
@@ -173,8 +185,24 @@ function MultiForm(form: Element) {
                 }
             }
 
-        }
-        else {
+        } else if (currentField === 0) {
+            for (let i = 0; i < inputs.length; i++) {
+                // If a field is empty...
+                // check if it is a radio button 
+                if (inputs[i].type === "checkbox") {
+                    if (inputs[i].checked) {
+                        temp = true;
+                        break;
+                    } else {
+                        temp = false;
+                    }
+                } else {
+                    if (inputs[i].value === "") {
+                        temp = false;
+                    }
+                }
+            }
+        } else {
             // validating inputs 
             // a loop to check if input not empty 
             for (let i = 0; i < inputs.length; i++) {
@@ -224,12 +252,11 @@ function MultiForm(form: Element) {
         e.target.closest("fieldset").classList.remove("has-error");
     }
 
-    function prevQuestion() {
+    function prevQuestion(e) {
         // if (currentField == 0) return false;
         // fieldSets[currentField].classList.add("current");
         // updateProgress(currentField);
-
-        // go back one slide 
+        // go back one slide
         fieldSets[currentField].classList.remove("current");
         // 
         currentField = currentField - 1;

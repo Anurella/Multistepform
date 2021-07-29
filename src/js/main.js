@@ -33,6 +33,8 @@ function MultiForm(form) {
     const applicantName = form.querySelectorAll('.applicant__name');
     // prev button
     const prevButton = document.querySelector('.prev__arrow');
+    // consent 
+    const approval = form.querySelector('#privacy');
     function init() {
         console.log("Initializing Form");
         showNext(currentField);
@@ -73,6 +75,13 @@ function MultiForm(form) {
                 checkFilled();
             }, 250);
         }));
+        approval.addEventListener('change', function (e) {
+            clearErrors(e);
+            clearTimeout(filledOut);
+            filledOut = setTimeout(() => {
+                checkFilled();
+            }, 250);
+        });
         // button 
         prevButton.addEventListener('click', prevQuestion);
         // form submission
@@ -81,13 +90,13 @@ function MultiForm(form) {
     function validateForm() {
         console.log("Validating");
         let valid = true;
+        let inputs = fieldSets[currentField].querySelectorAll('input');
         if (currentField == 0) {
             let tempp = fieldSets[currentField].querySelector('input[name="firstName"]');
             applicantName.forEach(sing => {
                 sing.innerHTML = tempp.value.trim();
             });
         }
-        let inputs = fieldSets[currentField].querySelectorAll('input');
         // for (let i = 0; i < inputs.length; i++) {
         //     //the checkFields checks for empty state 
         //     // If a field is empty...
@@ -109,6 +118,7 @@ function MultiForm(form) {
         for (let i = 0; i < inputs.length; i++) {
             //the checkFields checks for empty state 
             if (checkFields()) {
+                inputs[i].classList.remove("invalid");
                 break;
             }
             else {
@@ -138,7 +148,7 @@ function MultiForm(form) {
             ++currentField;
         }
         else {
-            console.log("Hello I am this stage");
+            console.log("Hello I have not moved");
         }
         showNext(currentField);
     }
@@ -157,6 +167,26 @@ function MultiForm(form) {
             for (let i = 0; i < selects.length; i++) {
                 if (selects[i].value === "") {
                     temp = false;
+                }
+            }
+        }
+        else if (currentField === 0) {
+            for (let i = 0; i < inputs.length; i++) {
+                // If a field is empty...
+                // check if it is a radio button 
+                if (inputs[i].type === "checkbox") {
+                    if (inputs[i].checked) {
+                        temp = true;
+                        break;
+                    }
+                    else {
+                        temp = false;
+                    }
+                }
+                else {
+                    if (inputs[i].value === "") {
+                        temp = false;
+                    }
                 }
             }
         }
@@ -213,11 +243,11 @@ function MultiForm(form) {
         }
         e.target.closest("fieldset").classList.remove("has-error");
     }
-    function prevQuestion() {
+    function prevQuestion(e) {
         // if (currentField == 0) return false;
         // fieldSets[currentField].classList.add("current");
         // updateProgress(currentField);
-        // go back one slide 
+        // go back one slide
         fieldSets[currentField].classList.remove("current");
         // 
         currentField = currentField - 1;

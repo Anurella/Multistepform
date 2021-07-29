@@ -29,12 +29,12 @@
 <body>
     <header>
         <div class="site__actions">
-            <a role="button" href="/">
+            <a role="button" href="">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11.358 12.0447C10.1483 13.0929 8.60067 13.6689 7 13.6667C3.318 13.6667 0.333328 10.682 0.333328 7.00001C0.333328 3.31801 3.318 0.333344 7 0.333344C10.682 0.333344 13.6667 3.31801 13.6667 7.00001C13.6667 8.42401 13.22 9.74401 12.46 10.8267L10.3333 7.00001H12.3333C12.3332 5.77081 11.9085 4.57939 11.1311 3.62727C10.3537 2.67515 9.27123 2.02081 8.06688 1.77492C6.86253 1.52903 5.61022 1.70669 4.52178 2.27785C3.43334 2.84902 2.57561 3.77862 2.09368 4.9094C1.61174 6.04018 1.5352 7.30272 1.87699 8.48344C2.21878 9.66416 2.95792 10.6906 3.96938 11.3891C4.98084 12.0875 6.20252 12.4152 7.42776 12.3166C8.65299 12.218 9.80657 11.6992 10.6933 10.848L11.358 12.0447Z" fill="#54616C" />
                 </svg>
             </a>
-            <a role="button" href="/">
+            <a title="Terms and conditions page" href="https://fbnquest.com/website-terms-of-use/" target="_blank">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6.99999 13.6667C3.31799 13.6667 0.333328 10.682 0.333328 7.00001C0.333328 3.31801 3.31799 0.333344 6.99999 0.333344C10.682 0.333344 13.6667 3.31801 13.6667 7.00001C13.6667 10.682 10.682 13.6667 6.99999 13.6667ZM6.99999 12.3333C8.41448 12.3333 9.77104 11.7714 10.7712 10.7712C11.7714 9.77105 12.3333 8.4145 12.3333 7.00001C12.3333 5.58552 11.7714 4.22897 10.7712 3.22877C9.77104 2.22858 8.41448 1.66668 6.99999 1.66668C5.58551 1.66668 4.22895 2.22858 3.22876 3.22877C2.22856 4.22897 1.66666 5.58552 1.66666 7.00001C1.66666 8.4145 2.22856 9.77105 3.22876 10.7712C4.22895 11.7714 5.58551 12.3333 6.99999 12.3333ZM6.33333 9.00001H7.66666V10.3333H6.33333V9.00001ZM7.66666 7.90334V8.33334H6.33333V7.33334C6.33333 7.15653 6.40357 6.98696 6.52859 6.86194C6.65361 6.73692 6.82318 6.66668 6.99999 6.66668C7.18938 6.66667 7.37487 6.61287 7.53488 6.51156C7.69489 6.41025 7.82284 6.26559 7.90384 6.0944C7.98485 5.92321 8.01557 5.73254 7.99245 5.54457C7.96932 5.3566 7.8933 5.17907 7.77322 5.03262C7.65313 4.88617 7.49394 4.77683 7.31414 4.71732C7.13435 4.65782 6.94135 4.65059 6.75761 4.69648C6.57387 4.74237 6.40694 4.8395 6.27624 4.97655C6.14554 5.11361 6.05645 5.28497 6.01933 5.47068L4.71133 5.20868C4.79242 4.8034 4.97967 4.42692 5.25394 4.11773C5.52822 3.80855 5.87967 3.57773 6.27239 3.44889C6.6651 3.32005 7.08499 3.2978 7.48912 3.38442C7.89325 3.47104 8.26713 3.66342 8.57254 3.94189C8.87795 4.22037 9.10394 4.57495 9.2274 4.96939C9.35086 5.36382 9.36737 5.78397 9.27524 6.18688C9.1831 6.58979 8.98563 6.96101 8.70301 7.26259C8.42039 7.56416 8.06275 7.78528 7.66666 7.90334Z" fill="#54616C" />
                 </svg>
@@ -55,7 +55,7 @@
         <!-- picture of sophie -->
         <section class="advisor">
             <div class="advisor__img">
-                <img src="images/sophie.png" alt=" Picture of Sophie ">
+                <img src="images/financial_advisor.jpg" alt=" Picture of Sophie ">
             </div>
         </section>
         <!-- form section  -->
@@ -79,7 +79,7 @@
             <form action="" name="" method="POST">
 
                 <fieldset name="introduction">
-                    <h2>Hey there! I am your Financial Advisor. <br/>
+                    <h2>Hey there! I am your Financial Advisor. <br />
                         Nice to meet you.
                     </h2>
                     <div class="flex">
@@ -92,6 +92,19 @@
                             <span data-label> Last Name </span>
                         </label>
                     </div>
+                    <label for="privacy" data-field="privacy" class="privacy">
+                        <input type="checkbox" required="" id="privacy"> 
+                        <span class=""></span>
+                        <div>
+                            By providing your contact details,
+                        you consent to the collection and processing of your personal data in line with our
+                            <a href="https://fbnquest.com/merchant-bank/privacy-policy/" target="_blank">
+                            Privacy Policy</a> and agree to the
+                            <a href="https://fbnquest.com/about-us/website-terms-of-use/" target="_blank">
+                            Terms and Conditions.</a>
+                            </div>
+                        <p class="error error-2"> You need agree to the terms. </p>
+                    </label>
                     <p class="error"> All fields are required </p>
                     <button type="button" class="continue" aria-disabled="true"> Continue </button>
                 </fieldset>
@@ -271,7 +284,7 @@
                 </fieldset>
                 <fieldset name="funds" class="funds">
                     <h2> Great, <span class="applicant__name"></span> ! I feel like I know you better now.
-                        <br/> Which of our FBN Mutual Funds are you interested in?
+                        <br /> Which of our FBN Mutual Funds are you interested in?
                     </h2>
                     <div class="funds__options">
                         <label for="" data-field="funds">
@@ -364,7 +377,7 @@
                                 </h3>
                                 <span class="radio__des">
                                     This provides long-term capital preservation by investing in listed stocks across
-                                    all sectors on the Nigerian Stock Exchange starting with a minimum sum Of &#8358;50,000
+                                    all sectors on the Nigerian Stock Exchange starting with a minimum sum of &#8358;50,000
                                 </span>
                                 <div class="radio__dets">
                                     <span> &#8358;50,000.00 </span>

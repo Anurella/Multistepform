@@ -235,6 +235,10 @@ header {
   width: 50px;
   height: 50px;
   border: 5px solid var(--white);
+  border-radius: 50%;
+}
+.advisor__img img {
+  border-radius: 50%;
 }
 .advisor::before {
   content: " ";
@@ -323,7 +327,7 @@ header {
   width: 20px;
   height: 20px;
   border: 1px solid #54616C;
-  border-radius: 100%;
+  border-radius: 50%;
   margin: 10px auto 0;
 }
 .radio__style:after {
@@ -334,7 +338,7 @@ header {
   position: absolute;
   top: 2px;
   left: 2px;
-  border-radius: 100%;
+  border-radius: 50%;
   opacity: 0;
   transform: scale(0);
   transition: transform, opacity 0.2s ease;
@@ -752,4 +756,57 @@ fieldset select:focus + .focus {
   .successMessage h1 {
     font-size: 3.35rem;
   }
+}
+
+fieldset .privacy {
+  margin-top: 20px;
+  display: flex;
+}
+fieldset .privacy input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  z-index: 1;
+  opacity: 0;
+}
+fieldset .privacy span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  border: 1px solid #54616C;
+  border-radius: 50%;
+  display: block;
+  cursor: pointer;
+}
+fieldset .privacy span::after {
+  content: " ";
+  width: 9px;
+  height: 9px;
+  top: 2px;
+  left: 2px;
+  display: inherit;
+  border-radius: inherit;
+}
+fieldset .privacy input:checked ~ span {
+  border-color: #B50156;
+}
+fieldset .privacy input:checked ~ span::after {
+  background-color: #B50156;
+}
+fieldset .privacy div {
+  font-size: 1.3rem;
+  margin-left: 25px;
+  text-align: left;
+}
+fieldset .privacy .error-2 {
+  bottom: -28px;
+}
+
+.has-error .error-2 {
+  transform: scale(1) translateY(5px);
+  visibility: visible;
 }
