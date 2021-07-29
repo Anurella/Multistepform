@@ -762,6 +762,14 @@ fieldset .privacy {
   margin-top: 20px;
   display: flex;
 }
+@media screen and (min-width: 768px) {
+  fieldset .privacy {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+  }
+}
 fieldset .privacy input {
   position: absolute;
   top: 0;
@@ -769,6 +777,9 @@ fieldset .privacy input {
   margin: 0;
   z-index: 1;
   opacity: 0;
+}
+fieldset .privacy a {
+  color: #B50156;
 }
 fieldset .privacy span {
   position: absolute;
@@ -801,12 +812,4 @@ fieldset .privacy div {
   font-size: 1.3rem;
   margin-left: 25px;
   text-align: left;
-}
-fieldset .privacy .error-2 {
-  bottom: -28px;
-}
-
-.has-error .error-2 {
-  transform: scale(1) translateY(5px);
-  visibility: visible;
 }
